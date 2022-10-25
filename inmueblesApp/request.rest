@@ -1,1 +1,39 @@
 GET http://localhost:3000/api/properties
+
+###
+
+POST http://localhost:3000/api/properties
+Content-Type: application/json
+
+{
+    "floor": 4,
+    "letter": "A",
+    "size": 90,
+    "num_rooms": 3,
+    "rented": true,
+    "owner": "Lauri",
+    "contact_email": "laura@gmail.com"
+}
+
+# {
+#     "floor": 2,
+#     "letter": "A",
+#     "size": 110,
+#     "num_rooms": 4,
+#     "rented": false,
+#     "owner": "Maitane",
+#     "contact_email": "maitane@gmail.com"
+# }
+
+###
+
+PUT http://localhost:3000/api/properties/63586fd638f4aa9596e2ffc7
+Content-Type: application/json
+
+{
+    "rented": true
+}
+
+###
+
+DELETE http://localhost:3000/api/properties/63586be920cc41a331c144c1
