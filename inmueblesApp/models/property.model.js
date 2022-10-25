@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+/* Creating a new schema object. */
 const Schema = mongoose.Schema;
 
+/* Creating a new schema object. */
 const propertySchema = new Schema({
     floor: Number,
     letter: String,
@@ -11,4 +13,5 @@ const propertySchema = new Schema({
     contact_email: String
 });
 
+/* Exporting the model to be used in other files. */
 module.exports = mongoose.model('property', propertySchema, 'properties');
