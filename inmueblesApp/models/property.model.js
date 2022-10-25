@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const propertySchema = new Schema({
     floor: Number,
     letter: String,
-    size: String,
+    size: Number,
     num_rooms: Number,
     rented: Boolean,
     owner: String,
