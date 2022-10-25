@@ -8,6 +8,11 @@ var app = require('../app');
 var debug = require('debug')('inmueblesapp:server');
 var http = require('http');
 
+//Loading the environment variables from the .env file.
+require('dotenv').config();
+//Loading the configuration of the database.
+require('../config/db');
+
 /**
  * Get port from environment and store in Express.
  */
