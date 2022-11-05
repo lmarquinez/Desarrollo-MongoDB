@@ -1,18 +1,26 @@
+####### GET ALL PROPERTIES
 GET http://localhost:3000/api/properties
 
 ###
 
+###### GET A PROPERTY BY ID
+GET http://localhost:3000/api/properties/63586fd638f4aa9596e2ffc
+
+
+###
+
+###### CREATE A PROPERTY
 POST http://localhost:3000/api/properties
 Content-Type: application/json
 
 {
-    "floor": 4,
-    "letter": "A",
-    "size": 90,
-    "num_rooms": 3,
-    "rented": true,
-    "owner": "Lauri",
-    "contact_email": "laura@gmail.com"
+    "floor": 5,
+    "letter": "B",
+    "size": 120,
+    "num_rooms": 5,
+    "rented": false,
+    "owner": "Maitane",
+    "contact_email": "mai8@gmail.com"
 }
 
 # {
@@ -27,13 +35,30 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/properties/63586fd638f4aa9596e2ffc7
+####### UPDATE A PROPERTY
+PUT http://localhost:3000/api/properties/63655aa06c0793215f18b8fc
 Content-Type: application/json
 
 {
-    "rented": true
+    "rented": false
 }
 
 ###
 
-DELETE http://localhost:3000/api/properties/63586be920cc41a331c144c1
+######## DELETE A PROPERTY BY ID
+DELETE http://localhost:3000/api/properties/63655aa16c0793215f18b9
+
+
+###
+
+####### DELETE ALL PROPERTIES FROM ONE FLOOR
+DELETE http://localhost:3000/api/properties/all/floor=9
+
+
+###
+
+###### GET A PROPERTY OF A OWNER
+GET http://localhost:3000/api/properties/owner/lauri
+
+
+###
