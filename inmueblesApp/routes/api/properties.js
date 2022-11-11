@@ -5,13 +5,16 @@ const Property = require("../../models/property.model");
 
 /* Importing the middleware function `checkFloor` from the file `middlewares.js` in the folder
 `helpers`. */
-const { checkFloor } = require("../../helpers/middlewares")
+const { checkFloor, checkOwner } = require("../../helpers/middlewares")
 
 /* GET ALL PROPERTIES */
 router.get('/', async (req, res) => {
     try {
         const properties = await Property.find();
-        res.json(properties);
+        if (properties.length === 0)
+            res.json({ Message: 'There is no property.', properties })
+        else
+            res.json(properties);
     } catch (error) {
         res.json({ Error: error.message, Message: 'There are no properties.' });
     }
@@ -55,7 +58,10 @@ router.delete('/:propertyId', async (req, res) => {
     try {
         const property = await Property.findByIdAndDelete(propertyId);
         const properties = await Property.find();
-        res.json(properties);
+        if (properties.length === 0)
+            res.json({ Message: 'There is no property.', properties })
+        else
+            res.json(properties);
     } catch (error) {
         res.json({ Error: error.message, Message: 'The property does not exist.' });
     }
@@ -74,7 +80,7 @@ router.delete('/all/floor=:num', checkFloor, async (req, res) => {
 });
 
 /* GET THE PROPERTIES OF ONE OWNER */
-router.get('/owner/:name', async (req, res) => {
+router.get('/owner/:name', checkOwner, async (req, res) => {
     const { name } = req.params;
     try {
         const result = await Property.aggregate([
@@ -82,10 +88,7 @@ router.get('/owner/:name', async (req, res) => {
             { $sort: { size: -1 } },
             { $project: { _id: 0, letter: 0, __v: 0 } }
         ]);
-        if (result.length === 0)
-            res.status(404).json({ Message: 'There is no property with that name.' })
-        else
-            res.json(result);
+        res.json(result);
     } catch (error) {
         res.json({ Error: error.message });
     }

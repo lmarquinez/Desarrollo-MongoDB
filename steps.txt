@@ -1,0 +1,72 @@
+(1) FIRST COMANDS TO CREATE EXPRESS APP:
+
+express --view=pug --git inmueblesApp
+cd inmueblesApp
+npm install
+
+npm start
+http://localhost:3000/
+
+
+(2) INSTALL NODEMON
+
+npm install --save-dev nodemon
+
+- Add in package.json:
+
+"scripts": {
+    // The command to start the production server.
+    "start": "node ./bin/www",
+    // The command to start the dev server.
+    "dev": "nodemon ./bin/www"
+}
+
+npm run start //production
+npm run dev //development
+
+
+(3) INSTALL MONGOOSE & DOTENV
+
+npm install dotenv mongoose
+
+- Create .env:
+MONGO_URL="mongodb://localhost:27017/propertiesDB"
+- Add in www:
+require('dotenv').config();
+
+- Create config/db.js
+- Add in www:
+require('../config/db');
+
+
+(4) ROUTES
+
+- Create routes/api.js
+- Create routes/api/properties.js
+
+
+(5) MODELS (SCHEMA)
+
+- Create models/property.model.js:
+
+const propertySchema = new Schema({
+    floor: Number,
+    letter: String,
+    size: String,
+    num_rooms: Number,
+    rented: Boolean,
+    owner: String,
+    contact_email: String
+});
+
+
+(6) CRUD (routes/api/properties.js)
+
+- GET
+- POST
+- PUT
+- DELETE
+
+
+
+
